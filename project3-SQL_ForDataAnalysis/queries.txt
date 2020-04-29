@@ -1,0 +1,64 @@
+-- Sales distribution by media type
+SELECT mt.name
+	, sum(il.Quantity) AS sales_count
+FROM InvoiceLine AS il
+INNER JOIN Track AS t
+	ON il.TrackId = t.TrackId
+INNER JOIN MediaType AS mt
+	ON mt.MediaTypeId = t.MediaTypeId
+GROUP BY mt.name;
+
+-- Sales distribution by genre
+SELECT g.name
+	, sum(il.Quantity) AS sales_count
+FROM InvoiceLine AS il
+INNER JOIN Track AS t
+	ON il.TrackId = t.TrackId
+INNER JOIN Genre AS g
+	ON g.GenreId = t.GenreId
+GROUP BY g.name
+ORDER BY sum(il.Quantity) DESC;
+
+-- Sales distribution among Top 20 countries in the most consumed genre
+WITH total_sales
+AS (
+	SELECT gn.GenreId
+		, sum(il.Quantity) AS total_sales
+	FROM InvoiceLine AS il
+	INNER JOIN Track AS t
+		ON il.TrackId = t.TrackId
+	INNER JOIN Genre AS gn
+		ON gn.GenreId = t.GenreId
+	GROUP BY gn.GenreId
+	ORDER BY sum(il.Quantity) DESC limit 1
+	)
+SELECT inv.BillingCity
+	, inv.BillingCountry
+	, gn.Name
+	, sum(il.Quantity) AS city_sales
+FROM Invoice AS inv
+INNER JOIN InvoiceLine AS il
+	ON inv.InvoiceId = il.InvoiceId
+INNER JOIN Track AS t
+	ON il.TrackId = t.TrackId
+INNER JOIN Genre AS gn
+	ON gn.GenreId = t.GenreId
+INNER JOIN total_sales AS ts
+	ON ts.GenreId = t.GenreId
+GROUP BY inv.BillingCity
+	, inv.BillingCountry
+	, gn.name
+ORDER BY sum(il.Quantity) DESC limit 20
+
+-- Top 10 artists
+SELECT a.name AS Artist
+	, sum(l.Quantity) AS sales
+FROM InvoiceLine l
+INNER JOIN Track t
+	ON l.TrackId = t.TrackId
+INNER JOIN Album AS ab
+	ON ab.AlbumId = t.AlbumId
+INNER JOIN artist a
+	ON a.ArtistId = ab.ArtistId
+GROUP BY a.name
+ORDER BY sum(l.Quantity) DESC limit 10
