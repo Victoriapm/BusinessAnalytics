@@ -1,0 +1,75 @@
+Data Visualization in Data Analysis
+
+- Motivation for Data Visualization	
+	- Anscombe's Quartet: different data sets with the same summary statistics (mean, std deviation & Pearson's correlation). 
+		Eg. [Same Stats, Different Graphs](https://www.autodeskresearch.com/publications/samestats) by [Alberto Cairo](http://albertocairo.com/)
+- Purposes for creating visualizations: 
+	- Exploratory analysis is done WHILE searching for insights. These visualizations don't need to be perfect. 
+		You are using plots to find insights, but they don't need to be aesthetically appealing. 
+		You are the consumer of these plots, and you need to be able to find the answer to your questions from these plots.
+	- Explanatory analysis is done when you are providing your results for others. 
+		These visualizations need to provide you the emphasis necessary to convey your message. 
+		They should be accurate, insightful, and visually appealing.
+- Resources for data visualizations	
+		- [Matplotlib](https://matplotlib.org/): versatile but can get complicated to code
+		- [Seaborn](https://seaborn.pydata.org/): adds functions to make common statistical visualizations easier to generate.
+		- [pandas](https://pandas.pydata.org/): general tool for working with data.
+
+Design of Visualizations
+- What makes a bad visual?
+	- Misleading:
+	- Distracts or hides the message
+- Levels of measurement: understand the type of data
+	* Qualitative or categorical types (non-numeric types)
+		1. Nominal data: pure labels without inherent order (no label is intrinsically greater or less than any other)
+		2. Ordinal data: labels with an intrinsic order or ranking (comparison operations can be made between values, but the magnitude of differences are not be well-defined)
+	* Quantitative or numeric types
+		3. Interval data: numeric values where absolute differences are meaningful (addition and subtraction operations can be made)
+		4. Ratio data: numeric values where relative differences are meaningful (multiplication and division operations can be made)
+	All quantitative-type variables also come in one of two varieties: discrete and continuous.
+		- Discrete quantitative variables can only take on a specific set values at some maximum level of precision.
+		- Continuous quantitative variables can (hypothetically) take on values to any level of precision.
+- How to convey data?
+	- Contrasting colors to highlight differences, only to provide context, not just for make it look good
+		- Before adding color to a visualization, start with black and white.
+		- When using color, use less intense colors - not all the colors of the rainbow
+		- Color only for communication. Use color to highlight your message and separate groups of interest. 
+		- [5 tips on designing colorblind-friendly visualizations](https://www.tableau.com/about/blog/2016/4/examining-data-viz-rules-dont-use-red-green-together-53463)
+	- positional changes (differences in x and y position. eg. scatterplots) 
+		If we have more than two variables, however, we have to start considering other visual encodings for the additional variables.
+		In general, color and shape are best for categorical variables, while the size of marker can assist in adding additional quantitative data, as we demonstrated here.
+		Only use these additional encodings when absolutely necessary. Often, overuse of these additional encodings suggest you are providing too much information in a single plot. Instead, it might be better to break the information into multiple individual messages, so the audience can understand every aspect of your message. 
+		You can also build in each aspect one at a time,
+	- length changes (differences in box heights. eg.bar charts and histograms)
+	- Avoid area changes (eg. pie charts)
+- [Chart Junts](https://en.wikipedia.org/wiki/Chartjunk)
+	- Heavy grid lines
+	- Unnecessary text
+	- Pictures surrounding the visual
+	- Shading or 3d components
+	- Ornamented chart axes
+- data-ink ratio: The more of the ink in your visual that is related to conveying the message in the data, the better.
+	Limiting chart junk increases the data-ink ratio.
+- Design Integrity
+	- The  Lie factor depicts the degree to which a visualization distorts or misrepresents the data values being plotted. 
+		(delta of visual impact/ visual start)/(delta of data impact/ data start)
+		[How to Spot Visualization Lies](https://flowingdata.com/2017/02/09/how-to-spot-visualization-lies/)
+		[How to lie with Statistics](http://faculty.neu.edu.cn/cc/zhangyf/papers/How-to-Lie-with-Statistics.pdf)
+
+
+Lessons 3-5: Exploration of Data
+These lessons systematically present core visualizations in exploratory data analysis. Exploration starts with univariate visualizations to identify trends in distribution and outliers in single variables. Bivariate visualizations follow, to show relationships between variables in the data. Finally, multivariate visualization techniques are presented to identify complex relationships between three or more variables at the same time.
+
+Unvariate Exploration of data: One single variables
+	- Bar charts for qualitive variables
+	- Histograms for wuantitive vairables
+
+
+
+Lesson 6: Explanatory Visualizations
+This lesson describes considerations that should be made when moving from exploratory data analysis to explanatory analysis. When polishing visualizations to present to others, you will need to consider what findings you want to focus on and how to use visualization techniques to highlight your main story. This lesson also provides tips for presentation of results and how to iterate on your presentations.
+
+Lesson 7: Visualization Case Study
+In this lesson, you will bring together everything from the previous lessons in an example case study. You will be presented with a dataset and perform an exploratory analysis. You will then take findings from that analysis and polish them up for presentation as explanatory visualizations.
+	
+	
